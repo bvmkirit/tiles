@@ -4,7 +4,7 @@
         <select class="form-control" name="country_id" id="exampleSelect1">
             <option value="">-- Select Country --</option>
             @foreach ($countries as $data)
-                <option value="{{$data->id}}" @if($data->id == $edit->country_id) selected @endif>
+                <option value="{{$data->id}}">
                     {{$data->name}}
                 </option>
             @endforeach
@@ -12,7 +12,7 @@
     </div>
     <div class="form-group">
         <label>State</label>
-        <input type="text" name="name" class="form-control" placeholder="Enter state" value="{{$edit->name}}"/>
+        <input type="text" name="name" class="form-control" placeholder="Enter state"/>
     </div>
 
 </div>

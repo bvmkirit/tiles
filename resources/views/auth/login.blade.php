@@ -4,7 +4,7 @@
 
     <div class="login-signin">
         <div class="mb-20">
-            <h3>Sign Up</h3>
+            <h3>Sign In</h3>
             <p class="opacity-60 font-weight-bold">Enter your details to login to your account:</p>
         </div>
         <form class=" login_form" role="form" method="POST" action="{{ route('login') }}">
@@ -44,12 +44,8 @@
                              class="btn btn-pill btn-outline-white font-weight-bold opacity-90 px-15 py-3">Sign In
                     </button>
                 </div>
-            </div>
         </form>
-        <div class="mt-10">
-            <span class="opacity-70 mr-4">Don't have an account yet?</span>
-            <a href="javascript:;" id="kt_login_signup" class="text-white font-weight-bold">Sign Up</a>
-        </div>
+
     </div>
 @endsection
 

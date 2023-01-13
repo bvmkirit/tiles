@@ -1,14 +1,9 @@
-<!--begin::Aside Menu-->
 <div class="aside-menu-wrapper flex-column-fluid" id="kt_aside_menu_wrapper">
-    <!--begin::Menu Container-->
     <div id="kt_aside_menu" class="aside-menu my-4" data-menu-vertical="1" data-menu-scroll="1" data-menu-dropdown-timeout="500">
-        <!--begin::Menu Nav-->
         <ul class="menu-nav">
-
             <li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover">
                 <a href="javascript:;" class="menu-link menu-toggle">
 										<span class="svg-icon menu-icon">
-											<!--begin::Svg Icon | path:assets/media/svg/icons/Design/Bucket.svg-->
 											<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
 												<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
 													<rect x="0" y="0" width="24" height="24" />
@@ -16,7 +11,6 @@
 													<path d="M20,22 C21.6568542,22 23,20.6568542 23,19 C23,17.8954305 22,16.2287638 20,14 C18,16.2287638 17,17.8954305 17,19 C17,20.6568542 18.3431458,22 20,22 Z" fill="#000000" opacity="0.3" />
 												</g>
 											</svg>
-                                            <!--end::Svg Icon-->
 										</span>
                     <span class="menu-text">Location</span>
                     <i class="menu-arrow"></i>
@@ -51,8 +45,6 @@
             </li>
 
         </ul>
-        <!--end::Menu Nav-->
     </div>
-    <!--end::Menu Container-->
+
 </div>
-<!--end::Aside Menu-->

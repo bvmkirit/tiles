@@ -15,6 +15,13 @@ class StateController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function __construct(State $s)
+    {
+        $this->view = 'admin.state';
+        $this->route = 'states';
+        $this->viewName = 'State';
+    }
     public function index()
     {
 
@@ -28,8 +35,14 @@ class StateController extends Controller
      */
     public function create()
     {
-        $countries = Country::get();
-        return view('admin.state.add',compact('countries'));
+        $data['countries'] = Country::get();
+        $data['url'] = route($this->route . '.store');
+        $data['title'] = 'Add State';
+        $data['module'] = $this->viewName;
+        $data['resourcePath'] = $this->view;
+        $data['resourceRoute'] = $this->route;
+
+        return view('adminLayout.general.create_form')->with($data);
     }
 
     /**
@@ -64,9 +77,17 @@ class StateController extends Controller
      * @param  \App\Models\State  $state
      * @return \Illuminate\Http\Response
      */
-    public function edit(State $state)
+    public function edit($id)
     {
-        //
+        $data['countries'] = Country::get();
+
+        $data['title'] = 'Edit State';
+        $data['edit'] = State::findOrFail($id);
+        $data['url'] ="";
+        $data['module'] = $this->viewName;
+        $data['resourcePath'] = $this->view;
+        $data['resourceRoute'] = $this->route;
+        return view('adminLayout.general.edit_form')->with($data);
     }
 
     /**
