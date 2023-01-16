@@ -2,7 +2,7 @@
 <head>
     <base href="">
     <meta charset="utf-8"/>
-    <title>Metronic | Dashboard</title>
+    <title>{{ config('app.name', 'Laravel') }}</title>
     <meta name="description" content="Updates and statistics"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700"/>
@@ -23,7 +23,7 @@
       class="header-fixed header-mobile-fixed subheader-enabled subheader-fixed aside-enabled aside-fixed aside-minimize-hoverable page-loading">
 <div id="kt_header_mobile" class="header-mobile align-items-center header-mobile-fixed">
     <a href="{{route('home')}}">
-        <img alt="Logo" src="{{asset('assets/media/logos/logo-light.png') }}') }}"/>
+        <img alt="Logo" src="{{asset('assets/media/logos/logo-light.png') }}"/>
     </a>
     <div class="d-flex align-items-center">
         <button class="btn p-0 burger-icon burger-icon-left" id="kt_aside_mobile_toggle">
@@ -34,7 +34,6 @@
         </button>
         <button class="btn btn-hover-text-primary p-0 ml-2" id="kt_header_mobile_topbar_toggle">
 					<span class="svg-icon svg-icon-xl">
-						<!--begin::Svg Icon | path:assets/media/svg/icons/General/User.svg-->
 						<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px"
                              height="24px" viewBox="0 0 24 24" version="1.1">
 							<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">

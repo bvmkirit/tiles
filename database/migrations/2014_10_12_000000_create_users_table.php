@@ -21,7 +21,7 @@ class CreateUsersTable extends Migration
             $table->string('phone')->nullable();
             $table->string('gst_number')->nullable();
             $table->text('how_can_help')->nullable();
-            $table->enum('role',['manufacturer', 'dealer', 'retailer', 'wholesaler', 'transporter', 'self-driver', 'worker', 'others', 'customer']);
+            $table->enum('role',['admin','manufacturer', 'dealer', 'retailer', 'wholesaler', 'transporter', 'self-driver', 'worker', 'others', 'customer']);
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();

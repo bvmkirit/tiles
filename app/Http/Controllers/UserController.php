@@ -2,45 +2,42 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\City;
-use App\Models\State;
+use App\Models\User;
 use Illuminate\Http\Request;
 use DataTables;
 
-class CityController extends Controller
+class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function __construct(City $s)
+    public function __construct(User $s)
     {
-        $this->view = 'admin.city';
-        $this->route = 'cities';
-        $this->viewName = 'City';
+        $this->view = 'admin.user';
+        $this->route = 'users';
+        $this->viewName = 'user';
     }
 
     public function index(Request $request)
     {
         if ($request->ajax()) {
 
-            $query = City::with('state','state.country')->get();
+            $query = User::get();
             return Datatables::of($query)
-
-                ->addColumn('state_id', function ($row) {
-                    return  $row->state->name. '-'.$row->state->country->name;
+                ->addColumn('action', function ($row) {
+                    $btn = view('adminLayout.general.actionbtn')->with(['id' => $row->id, 'route' => $this->route])->render();
+                    return $btn;
 
                 })
-
                 ->setRowClass(function () {
                     return 'row-move';
                 })
                 ->setRowId(function ($row) {
                     return 'row-' . $row->id;
                 })
-
-                ->rawColumns(['state_id'])
+                ->rawColumns(['action'])
                 ->make(true);
 
         }
@@ -55,9 +52,9 @@ class CityController extends Controller
      */
     public function create()
     {
-        $data['states'] = State::get();
+
         $data['url'] = route($this->route . '.store');
-        $data['title'] = 'Add City';
+        $data['title'] = 'Add User';
         $data['module'] = $this->viewName;
         $data['resourcePath'] = $this->view;
         $data['resourceRoute'] = $this->route;
@@ -74,17 +71,18 @@ class CityController extends Controller
     public function store(Request $request)
     {
         $input = $request->all();
-        $city = City::create($input);
-        return redirect()->route('cities.index')->with('message', 'City Created Successfully');
+        $input['password']= \Hash::make('Password');
+        $user = User::create($input);
+        return redirect()->route('users.index')->with('message', 'User Created Successfully');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\City  $city
+
      * @return \Illuminate\Http\Response
      */
-    public function show(City $city)
+    public function show(User $user)
     {
         //
     }
@@ -92,42 +90,53 @@ class CityController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\City  $city
+
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
-        $data['states'] = State::get();
 
-        $data['title'] = 'Edit State';
-        $data['edit'] = City::findOrFail($id);
-        $data['url'] ="";
+        $data['title'] = 'Edit User';
+        $data['edit'] = User::findOrFail($id);
+        $data['url'] = route($this->route . '.update', ['user' => $id]);
         $data['module'] = $this->viewName;
         $data['resourcePath'] = $this->view;
         $data['resourceRoute'] = $this->route;
-        return view('adminLayout.general.edit_form')->with($data);
+
+        return view('adminLayout.general.edit_form',compact('data'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\City  $city
+
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, City $city)
+    public function update(Request $request, User $user)
     {
-        //
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->address = $request->address;
+        $user->role = $request->role;
+        $user->phone = $request->phone;
+        $user->save();
+        return redirect()->route('users.index')->with('message', 'User Updated Successfully');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\City  $city
+
      * @return \Illuminate\Http\Response
      */
-    public function destroy(City $city)
+    public function destroy(Request $request,User $user)
     {
-        //
+        $user = User::where('id',$request->id)->delete();
+        if ($user){
+            return response()->json(['status'=>'success']);
+        }else{
+            return response()->json(['status'=>'error']);
+        }
     }
 }

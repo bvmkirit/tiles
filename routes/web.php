@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\StateController;
 use App\Http\Controllers\CityController;
+use App\Http\Controllers\UserController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -21,8 +22,15 @@ Route::get('/', function () {
 \Illuminate\Support\Facades\Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
+Route::name('home.')->group(function () {
+    Route::get('/change-multiple-status', 'App\Http\Controllers\HomeController@changeMultipleStatus')->name('change-multiple-status');
+    Route::get('/delete-multiple', 'App\Http\Controllers\HomeController@deleteMultiple')->name('delete-multiple');
+});
 Route::resource('states', StateController::class);
 Route::resource('cities', CityController::class);
+Route::get('settings', 'App\Http\Controllers\SettingController@setting')->name('setting.index');
+Route::put('settings/update/{id}', 'App\Http\Controllers\SettingController@update')->name('setting.update');
+Route::resource('users', UserController::class);
+Route::post('users/delete', [UserController::class ,'destroy'])->name('users.delete');
 
 

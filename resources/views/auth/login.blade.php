@@ -36,8 +36,8 @@
                     <label class="checkbox checkbox-outline checkbox-white text-white m-0">
                         <input type="checkbox" name="remember"/>Remember me
                         <span></span></label>
-                    <a href="javascript:;" id="kt_login_forgot" class="text-white font-weight-bold">Forget Password
-                        ?</a>
+{{--                    <a href="javascript:;" id="kt_login_forgot" class="text-white font-weight-bold">Forget Password--}}
+{{--                        ?</a>--}}
                 </div>
                 <div class="form-group text-center mt-10">
                     <button  type="submit"

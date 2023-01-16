@@ -27,7 +27,7 @@
                         </div>
                     @endif
 
-                    <form action="{{$url}}" method="POST">
+                    <form action="{{$url}}" method="POST" enctype="multipart/form-data">
                         @csrf
                         @method('POST')
                         @php

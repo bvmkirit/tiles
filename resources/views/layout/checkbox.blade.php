@@ -1,1 +1,0 @@
-<input type="checkbox" class="allcheckbox" value="{{ $id }}" />

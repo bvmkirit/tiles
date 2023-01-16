@@ -6,8 +6,7 @@ use App\Models\Country;
 use App\Models\State;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreState;
-
-
+use DataTables;
 class StateController extends Controller
 {
     /**
@@ -22,12 +21,33 @@ class StateController extends Controller
         $this->route = 'states';
         $this->viewName = 'State';
     }
-    public function index()
+
+    public function index(Request $request)
     {
+        if ($request->ajax()) {
 
-        return view('admin.state.index');
+            $query = State::with('country')->get();
+            return Datatables::of($query)
+
+                ->addColumn('country_id', function ($row) {
+                    return  $row->country->name;
+
+                })
+
+                ->setRowClass(function () {
+                    return 'row-move';
+                })
+                ->setRowId(function ($row) {
+                    return 'row-' . $row->id;
+                })
+
+                ->rawColumns(['country_id'])
+                ->make(true);
+
+        }
+
+        return view($this->view.'.index');
     }
-
     /**
      * Show the form for creating a new resource.
      *

@@ -2,7 +2,12 @@
 
 @section('content')
     @php
-
+        $title = $data['title'];
+        $module = $data['module'];
+        $resourcePath = $data['resourcePath'];
+        $resourceRoute = $data['resourceRoute'];
+        $url = $data['url'];
+        $id = $data['edit']->id;
     @endphp
     <div class="container">
         <div class="row">
@@ -30,15 +35,15 @@
                         </div>
                     @endif
 
-                    <form action="{{$url}}" method="POST">
+                    <form action="{{$url}}" method="POST" enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
                         @php
                             $index= route($resourceRoute.'.index');
-                            $store=route($resourceRoute.'.store');
+//                            $store=route($resourceRoute.'.store');
 
                         @endphp
-                        @include($resourcePath.'.edit', array('data' => $edit))
+                        @include($resourcePath.'.edit', array('data' => $data['edit']))
                         <div class="card-footer">
                             <button type="submit" class="btn btn-primary mr-2">Submit</button>
                             <a href="{{ $index }}"><button type="button" class="btn btn-secondary">Cancel</button></a>
