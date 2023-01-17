@@ -70,6 +70,20 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
+        $validated = $request->validate([
+            'name' => 'required|max:255',
+            'email' => 'required|email',
+            'address' => 'required',
+            'role' => 'required',
+            'phone' => 'required',
+        ],[
+            'name.required'=>'Name is required',
+            'email.required'=>'Email is required',
+            'email.email'=>'Email must be in valid format',
+            'address.required'=>'Address is required',
+            'role.required'=>'Role is required',
+            'phone.required'=>'Phone is required',
+        ]);
         $input = $request->all();
         $input['password']= \Hash::make('Password');
         $user = User::create($input);
@@ -115,6 +129,20 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
+        $validated = $request->validate([
+            'name' => 'required|max:255',
+            'email' => 'required|email',
+            'address' => 'required',
+            'role' => 'required',
+            'phone' => 'required',
+        ],[
+            'name.required'=>'Name is required',
+            'email.required'=>'Email is required',
+            'email.email'=>'Email must be in valid format',
+            'address.required'=>'Address is required',
+            'role.required'=>'Role is required',
+            'phone.required'=>'Phone is required',
+        ]);
         $user->name = $request->name;
         $user->email = $request->email;
         $user->address = $request->address;

@@ -79,7 +79,13 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
+        $validated = $request->validate([
+            'name' => 'required|max:255',
+        ],[
+            'name.required'=>'Name is required',
+        ]);
         $input = $request->all();
+        $input['level']=Category::where('id',$request->parent_id)->value('level') ? (int)Category::where('id',$request->parent_id)->value('level') + 1  : 1;
         $category = Category::create($input);
         return redirect()->route('categories.index')->with('message', 'Category Created Successfully');
     }
@@ -104,9 +110,9 @@ class CategoryController extends Controller
     public function edit($id)
     {
         $categories = Category::where('parent_id', null)->get();
-        $data['title'] = 'Edit State';
+        $data['title'] = 'Edit Category';
         $data['edit'] = Category::findOrFail($id);
-        $data['url'] ="";
+        $data['url'] =route($this->route . '.update', ['category' => $id]);;
         $data['module'] = $this->viewName;
         $data['resourcePath'] = $this->view;
         $data['resourceRoute'] = $this->route;
@@ -120,9 +126,18 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Category  $category)
     {
-        //
+        $validated = $request->validate([
+            'name' => 'required|max:255',
+        ],[
+            'name.required'=>'Name is required',
+        ]);
+        $input = $request->all();
+        $input['level']=Category::where('id',$request->parent_id)->value('level') ? (int)Category::where('id',$request->parent_id)->value('level') + 1  : 1;
+        $category->update($input);
+        return redirect()->route('categories.index')->with('message', 'Category Updated Successfully');
+
     }
 
     /**

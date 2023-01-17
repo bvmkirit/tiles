@@ -73,7 +73,13 @@ class StateController extends Controller
      */
     public function store(StoreState $request)
     {
-
+        $validated = $request->validate([
+            'name' => 'required|max:255',
+            'country_id' => 'required',
+        ],[
+            'name.required'=>'Name is required',
+            'country_id.required'=>'Country is required',
+        ]);
         $input = $request->all();
         $user = State::create($input);
         return redirect()->route('states.index')->with('message', 'State Created Successfully');

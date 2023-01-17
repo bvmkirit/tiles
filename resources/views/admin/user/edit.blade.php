@@ -3,21 +3,33 @@
         <div class="form-group col-sm-4">
             <label>Name</label>
             <input type="text" name="name" class="form-control" placeholder="Enter name" value="{{$data->name}}"/>
+            @error('name')
+            <span class="text-danger">{{ $message }}</span>
+            @enderror
         </div>
 
         <div class="form-group col-sm-4">
             <label>Email</label>
             <input type="email" name="email" class="form-control" placeholder="Enter Email" value="{{$data->email}}"/>
+            @error('email')
+            <span class="text-danger">{{ $message }}</span>
+            @enderror
         </div>
 
         <div class="form-group col-sm-4">
             <label>Adddress</label>
             <textarea name="address" class="form-control">{{ $data->address}}</textarea>
+            @error('address')
+            <span class="text-danger">{{ $message }}</span>
+            @enderror
         </div>
 
         <div class="form-group col-sm-4">
             <label>Phone No</label>
             <input type="text" name="phone" class="form-control" placeholder="Enter Phone No" value="{{$data->phone}}"/>
+            @error('phone')
+            <span class="text-danger">{{ $message }}</span>
+            @enderror
         </div>
 
         <div class="form-group col-sm-4">
@@ -33,6 +45,9 @@
                 <option value="worker" @if($data->role =="worker") selected @endif> Worker</option>
                 <option value="customer" @if($data->role =="customer") selected @endif> Customer</option>
             </select>
+            @error('role')
+            <span class="text-danger">{{ $message }}</span>
+            @enderror
         </div>
 
     </div>

@@ -4,8 +4,8 @@
         <select class="form-control" name="parent_id" id="exampleSelect1">
             <option value="">-- Select Category --</option>
             @foreach ($categories as $data)
-                    <?php $dash=''; ?>
-                <option value="{{$data->id}}">
+                    <?php $dash = ''; ?>
+                <option value="{{$data->id}}" @if( old('parent_id',$data->id)) selected @endif>
                     {{$data->name}}
                 </option>
                 @if(count($data->subcategories))
@@ -16,7 +16,10 @@
     </div>
     <div class="form-group">
         <label>Name</label>
-        <input type="text" name="name" class="form-control" placeholder="Enter Name"/>
+        <input type="text" name="name" class="form-control" placeholder="Enter Name" value="{{ old('name') }}"/>
+        @error('name')
+        <span class="text-danger">{{ $message }}</span>
+        @enderror
     </div>
 
 </div>

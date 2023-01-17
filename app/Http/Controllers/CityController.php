@@ -73,6 +73,13 @@ class CityController extends Controller
      */
     public function store(Request $request)
     {
+        $validated = $request->validate([
+            'name' => 'required|max:255',
+            'state_id' => 'required',
+        ],[
+            'name.required'=>'Name is required',
+            'state_id.required'=>'State is required',
+        ]);
         $input = $request->all();
         $city = City::create($input);
         return redirect()->route('cities.index')->with('message', 'City Created Successfully');

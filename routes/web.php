@@ -5,6 +5,7 @@ use App\Http\Controllers\StateController;
 use App\Http\Controllers\CityController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ProductController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -34,5 +35,6 @@ Route::put('settings/update/{id}', 'App\Http\Controllers\SettingController@updat
 Route::resource('users', UserController::class);
 Route::post('users/delete', [UserController::class ,'destroy'])->name('users.delete');
 Route::resource('categories', CategoryController::class);
+Route::resource('products', ProductController::class);
 
 
