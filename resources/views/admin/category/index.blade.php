@@ -5,7 +5,7 @@
         <div class="container-fluid d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
             <div class="d-flex align-items-center flex-wrap mr-1">
                 <div class="d-flex align-items-baseline mr-5">
-                    <h5 class="text-dark font-weight-bold my-2 mr-5">City</h5>
+                    <h5 class="text-dark font-weight-bold my-2 mr-5">Category</h5>
                     <ul class="breadcrumb breadcrumb-transparent breadcrumb-dot font-weight-bold p-0 my-2 font-size-sm">
                         <li class="breadcrumb-item">
                             <a href="" class="text-muted">Lists</a>
@@ -22,13 +22,13 @@
             <div class="card card-custom">
                 <div class="card-header flex-wrap py-5">
                     <div class="card-title">
-                        <h3 class="card-label">Cities</h3>
+                        <h3 class="card-label">Category</h3>
                     </div>
                     <div class="card-toolbar">
                         <div class="dropdown dropdown-inline mr-2">
 
                         </div>
-                        <a href="{{route('cities.create')}}" class="btn btn-primary font-weight-bolder">
+                        <a href="{{route('categories.create')}}" class="btn btn-primary font-weight-bolder">
 											<span class="svg-icon svg-icon-md">
 												<svg xmlns="http://www.w3.org/2000/svg"
                                                      xmlns:xlink="http://www.w3.org/1999/xlink" width="24px"
@@ -51,7 +51,8 @@
                         <tr>
                             <th>Id</th>
                             <th>Name</th>
-                            <th>State</th>
+                            <th>Category</th>
+                            <th>Action</th>
                         </tr>
                         </thead>
 
@@ -85,7 +86,7 @@
 
                 order: [0, false],
 
-                ajax: "{{ route('cities.index') }}",
+                ajax: "{{ route('categories.index') }}",
 
                 columns: [
 
@@ -111,7 +112,15 @@
 
                         searchable: true,
 
-                        "data": "state_id"
+                        "data": "parent_id"
+
+                    },
+                    {
+                        orderable: true,
+
+                        searchable: true,
+
+                        "data": "action"
 
                     },
 

@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\StateController;
 use App\Http\Controllers\CityController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\CategoryController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -32,5 +33,6 @@ Route::get('settings', 'App\Http\Controllers\SettingController@setting')->name('
 Route::put('settings/update/{id}', 'App\Http\Controllers\SettingController@update')->name('setting.update');
 Route::resource('users', UserController::class);
 Route::post('users/delete', [UserController::class ,'destroy'])->name('users.delete');
+Route::resource('categories', CategoryController::class);
 
 

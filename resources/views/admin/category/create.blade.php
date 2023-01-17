@@ -1,0 +1,22 @@
+<div class="card-body">
+    <div class="form-group">
+        <label for="exampleSelect1">Category</label>
+        <select class="form-control" name="parent_id" id="exampleSelect1">
+            <option value="">-- Select Category --</option>
+            @foreach ($categories as $data)
+                    <?php $dash=''; ?>
+                <option value="{{$data->id}}">
+                    {{$data->name}}
+                </option>
+                @if(count($data->subcategories))
+                    @include('admin.category.subCategoryList-option',['subcategories' => $data->subcategories,'edit_id'=>Null])
+                @endif
+            @endforeach
+        </select>
+    </div>
+    <div class="form-group">
+        <label>Name</label>
+        <input type="text" name="name" class="form-control" placeholder="Enter Name"/>
+    </div>
+
+</div>
