@@ -29,7 +29,6 @@ Route::get('shop', 'App\Http\Controllers\frontend\HomeController@index')->name('
 Route::get('/', 'App\Http\Controllers\frontend\HomeController@index');
 
 
-
 Route::group(['prefix' => 'front'], function (){
     // Authentication Routes...
     Route::get('login', [LoginController::class,'showLoginForm'])->name('front-login');

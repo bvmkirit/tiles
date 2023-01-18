@@ -27,9 +27,26 @@
                                 <li><a href="#">English</a></li>
                             </ul>
                         </div>
-                        <div class="header__top__right__auth">
-                            <a href="#"><i class="fa fa-user"></i> Login</a>
-                        </div>
+
+                        @guest
+                            <div class="header__top__right__auth">
+                            <a href="{{route('front-login')}}">
+                                Login
+                            </a></div>
+                            @else
+                            <div class="header__top__right__auth">
+                               <a href="{{route('logout')}}"
+                               onclick="event.preventDefault();
+                                 document.getElementById('logout-form').submit();">
+                                Logout
+                               </a>
+
+                            <form id="logout-form" action="{{route('logout')}}" method="POST"
+                                  style="display: none;">
+                               @csrf
+                            </form>
+                           </div>
+                        @endif
                     </div>
                 </div>
             </div>

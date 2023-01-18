@@ -223,7 +223,11 @@ class LoginController extends Controller
      */
     protected function loggedOut(Request $request)
     {
+        $this->guard()->logout();
 
+        $request->session()->invalidate();
+
+        return $this->loggedOut($request) ?: redirect('/');
     }
 
     /**
@@ -235,5 +239,6 @@ class LoginController extends Controller
     {
         return Auth::guard();
     }
+
 }
 
