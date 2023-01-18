@@ -52,6 +52,15 @@
             <span class="text-danger">{{ $message }}</span>
             @enderror
         </div>
+
+        <div class="form-group col-sm-4">
+            <label>Price</label>
+            <input type="number" name="price" class="form-control" placeholder="Enter Price" value="{{ old('price',$data->price) }}"/>
+            @error('price')
+            <span class="text-danger">{{ $message }}</span>
+            @enderror
+        </div>
+
         <div class="form-group col-sm-4">
             <label>Size</label>
             <input type="text" name="size" class="form-control" placeholder="Enter Size" value="{{ old('size',$data->size) }}"/>
@@ -89,5 +98,60 @@
             <span class="text-danger">{{ $message }}</span>
             @enderror
         </div>
+        <div class="form-group col-sm-4"></div>
+        @if($data->productImages)
+            @foreach($data->productImages as $image)
+                <div class="form-group col-sm-4" >
+                    <div class="d-flex ">
+                        <img src="{{url($image->image)}}" height="400" width="400"  >
+
+                    </div>
+
+                </div>
+                <div class="form-group col-sm-1">
+                    <a class="btn btn-danger btn-delete" data-id="{{$image->id}}" style="height: 50px; width: 50px"><i class="fa fa-trash mt-5"></i></a>
+                </div>
+            @endforeach
+        @endif
     </div>
 </div>
+@push('scripts')
+<script>
+    $(document).ready(function () {
+        $('.btn-delete').on("click", function (e) {
+            e.preventDefault()
+            var id = $(this).data('id');
+            $.ajax({
+
+                type: "POST",
+
+                url: "{{route('products.image.delete')}}",
+
+                data: {
+                    '_token': $('input[name="_token"]').val(),
+                    'id': id,
+                },
+                cache: false,
+
+                success: function (data) {
+
+                    if (data.status === 'success') {
+
+
+                        location.reload();
+                        toastr["success"]("Delete Successfully", "Success");
+
+
+                    }  else {
+                        location.reload();
+                        toastr["error"]("Something went wrong", "Error");
+
+                    }
+                },
+
+
+            });
+        });
+    })
+</script>
+@endpush
