@@ -6,6 +6,10 @@ use App\Http\Controllers\CityController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\frontend\Auth\LoginController;
+use App\Http\Controllers\frontend\Auth\RegisterController;
+use App\Http\Controllers\frontend\Auth\ForgotPasswordController;
+use App\Http\Controllers\frontend\Auth\ResetPasswordController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -17,9 +21,34 @@ use App\Http\Controllers\ProductController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+//Route::get('/', function () {
+//    return view('welcome');
+//});
+
+Route::get('shop', 'App\Http\Controllers\frontend\HomeController@index')->name('shop');
+Route::get('/', 'App\Http\Controllers\frontend\HomeController@index');
+
+
+
+Route::group(['prefix' => 'front'], function (){
+    // Authentication Routes...
+    Route::get('login', [LoginController::class,'showLoginForm'])->name('front-login');
+    Route::post('login', [LoginController::class,'login']);
+    Route::post('logout',  [LoginController::class,'logout'])->name('logout');
+
+// Registration Routes...
+
+    Route::get('register', [RegisterController::class,'showRegistrationForm'])->name('front-register');
+    Route::post('register', [RegisterController::class,'register'])->name('register');
+
+// Password Reset Routes...
+    Route::get('password/reset', [ForgotPasswordController::class,'showLinkRequestForm']);
+    Route::post('password/email', [ForgotPasswordController::class,'sendResetLinkEmail']);
+    Route::get('password/reset/{token}', [ResetPasswordController::class,'showResetForm']);
+    Route::post('password/reset', [ResetPasswordController::Class,'reset']);
 });
+
+
 
 \Illuminate\Support\Facades\Auth::routes();
 
