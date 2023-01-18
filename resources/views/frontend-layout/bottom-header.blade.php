@@ -56,7 +56,7 @@
         <div class="row">
             <div class="col-lg-3">
                 <div class="header__logo">
-                    <a href="./index.html"><img src="{{asset('assets/front/img/logo.png')}}" alt="IMG"></a>
+                    <a href="{{route('front.home')}}"><img src="{{asset('assets/front/img/logo.png')}}" alt="IMG"></a>
                 </div>
             </div>
             <div class="col-lg-6">

@@ -18,6 +18,7 @@ class CreateProductsTable extends Migration
             $table->integer('category_id');
             $table->integer('manufacturer_id');
             $table->string('name');
+            $table->double('price',8,2);
             $table->string('size');
             $table->string('weight');
             $table->string('coverage_area');

@@ -53,6 +53,13 @@
             @enderror
         </div>
         <div class="form-group col-sm-4">
+            <label>Price</label>
+            <input type="number" name="price" class="form-control" placeholder="Enter Price" value="{{ old('price') }}"/>
+            @error('price')
+            <span class="text-danger">{{ $message }}</span>
+            @enderror
+        </div>
+        <div class="form-group col-sm-4">
             <label>Size</label>
             <input type="text" name="size" class="form-control" placeholder="Enter Size" value="{{ old('size') }}"/>
             @error('weight')

@@ -26,19 +26,19 @@ use App\Http\Controllers\frontend\Auth\ResetPasswordController;
 //});
 
 Route::get('shop', 'App\Http\Controllers\frontend\HomeController@index')->name('shop');
-Route::get('/', 'App\Http\Controllers\frontend\HomeController@index');
+Route::get('/', 'App\Http\Controllers\frontend\HomeController@index')->name('front.home');
 
 
 Route::group(['prefix' => 'front'], function (){
     // Authentication Routes...
     Route::get('login', [LoginController::class,'showLoginForm'])->name('front-login');
     Route::post('login', [LoginController::class,'login']);
-    Route::post('logout',  [LoginController::class,'logout'])->name('logout');
+    Route::post('logout',  [LoginController::class,'logout'])->name('front-logout');
 
 // Registration Routes...
 
     Route::get('register', [RegisterController::class,'showRegistrationForm'])->name('front-register');
-    Route::post('register', [RegisterController::class,'register'])->name('register');
+    Route::post('register', [RegisterController::class,'register'])->name('front.register');
 
 // Password Reset Routes...
     Route::get('password/reset', [ForgotPasswordController::class,'showLinkRequestForm']);
@@ -64,5 +64,6 @@ Route::resource('users', UserController::class);
 Route::post('users/delete', [UserController::class ,'destroy'])->name('users.delete');
 Route::resource('categories', CategoryController::class);
 Route::resource('products', ProductController::class);
+Route::post('products/img-delete',[ProductController::class,'deleteImage'])->name('products.image.delete');
 
 

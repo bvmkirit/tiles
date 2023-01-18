@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\Product;
+use App\Models\ProductImages;
 use App\Models\User;
 use Illuminate\Http\Request;
 use DataTables;
@@ -83,6 +84,8 @@ class ProductController extends Controller
             'coverage_area' => 'required',
             'tiles_per_box' => 'required',
             'stock' => 'required',
+            'price' => 'required',
+            'images'=>'required|mimes:jpg,jpeg,png,bmp,tiff',
         ],[
             'name.required'=>'Name is required',
             'category_id.required'=>'Category is required',
@@ -93,10 +96,18 @@ class ProductController extends Controller
             'coverage_area.required'=>'Coverage Area is required',
             'tiles_per_box.required'=>'Tiles Per Box is required',
             'stock.required'=>'Stock is required',
+            'price.required'=>'Price is required',
         ]);
-//dd('s');
+//        dd($request->all());
         $input = $request->all();
+        unset($input['images']);
         $product = Product::create($input);
+        if($request->images){
+            foreach ($request->images as $img)
+            {
+                $product->productImages()->create(['image'=>setImage($img,'product') ]);
+            }
+        }
         return redirect()->route('products.index')->with('message', 'Product Created Successfully');
     }
 
@@ -149,6 +160,7 @@ class ProductController extends Controller
             'coverage_area' => 'required',
             'tiles_per_box' => 'required',
             'stock' => 'required',
+            'price' => 'required',
         ],[
             'name.required'=>'Name is required',
             'category_id.required'=>'Category is required',
@@ -159,9 +171,20 @@ class ProductController extends Controller
             'coverage_area.required'=>'Coverage Area is required',
             'tiles_per_box.required'=>'Tiles Per Box is required',
             'stock.required'=>'Stock is required',
+            'price.required'=>'Price is required',
+
         ]);
+
+        if($request->images){
+            foreach ($request->images as $img)
+            {
+                $product->productImages()->create(['image'=>setImage($img,'product') ]);
+            }
+        }
         $input = $request->all();
+        unset($input['images']);
         $product->update($input);
+
         return redirect()->route('products.index')->with('message', 'Product Updated Successfully');
 
     }
@@ -175,5 +198,15 @@ class ProductController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function deleteImage(Request $request)
+    {
+        $imagess = ProductImages::findOrFail($request->id)->delete();
+        if ($imagess){
+            return response()->json(['status'=>'success']);
+        }else{
+            return response()->json(['status'=>'error']);
+        }
     }
 }
