@@ -18,5 +18,17 @@
         <label>Name</label>
         <input type="text" name="name" class="form-control" placeholder="Enter Name" value="{{$data->name}}"/>
     </div>
+    <div class="form-group">
+        <label>Image</label>
+        <input type="file" name="image" class="form-control" value="{{ old('image') }}" accept="image/*"/>
+        @error('image')
+        <span class="text-danger">{{ $message }}</span>
+        @enderror
+    </div>
 
+    @if($data->image)
+        <div class="form-group">
+            <img src="{{asset($data->image)}}">
+        </div>
+    @endif
 </div>

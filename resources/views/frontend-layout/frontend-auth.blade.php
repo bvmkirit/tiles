@@ -22,6 +22,15 @@
     <link rel="stylesheet" href="{{ asset('assets/front/css/owl.carousel.min.css')}}" type="text/css">
     <link rel="stylesheet" href="{{ asset('assets/front/css/slicknav.min.css')}}" type="text/css">
     <link rel="stylesheet" href="{{ asset('assets/front/css/style.css')}}" type="text/css">
+    <style>
+        .header__menu ul li .header__menu__dropdown li a {
+
+            overflow: hidden !important;
+            white-space: nowrap !important;
+            text-overflow: ellipsis !important;
+        }
+
+    </style>
 </head>
 
 <body>
@@ -62,7 +71,7 @@
 <script src="{{ asset('assets/front/js/owl.carousel.min.js')}}"></script>
 <script src="{{ asset('assets/front/js/main.js')}}"></script>
 
-
+@stack('scripts')
 </body>
 
 </html>

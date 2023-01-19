@@ -1,4 +1,5 @@
 <?php
+use App\Models\Category;
 use App\Models\Setting;
 function setImage($file,$folder,$type=null){
     if($type == 'edit'){
@@ -13,3 +14,8 @@ function setWebsite($type){
     return $data;
 }
 
+
+function menus(){
+    $categories = Category::where('parent_id', null)->with('subCategories')->get();
+    return $categories;
+}

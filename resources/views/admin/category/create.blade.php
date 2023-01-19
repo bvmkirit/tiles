@@ -21,5 +21,12 @@
         <span class="text-danger">{{ $message }}</span>
         @enderror
     </div>
+    <div class="form-group">
+        <label>Image</label>
+        <input type="file" name="image" class="form-control"  value="{{ old('image') }}" accept="image/*"/>
+        @error('image')
+        <span class="text-danger">{{ $message }}</span>
+        @enderror
+    </div>
 
 </div>

@@ -45,6 +45,11 @@ Route::group(['prefix' => 'front'], function (){
     Route::post('password/email', [ForgotPasswordController::class,'sendResetLinkEmail']);
     Route::get('password/reset/{token}', [ResetPasswordController::class,'showResetForm']);
     Route::post('password/reset', [ResetPasswordController::Class,'reset']);
+
+// Subcategory Routes
+    Route::post('subcategory','App\Http\Controllers\frontend\HomeController@subcategory')->name('front.subcategory');
+
+
 });
 
 
