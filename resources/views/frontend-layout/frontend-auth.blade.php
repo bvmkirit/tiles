@@ -22,6 +22,34 @@
     <link rel="stylesheet" href="{{ asset('assets/front/css/owl.carousel.min.css')}}" type="text/css">
     <link rel="stylesheet" href="{{ asset('assets/front/css/slicknav.min.css')}}" type="text/css">
     <link rel="stylesheet" href="{{ asset('assets/front/css/style.css')}}" type="text/css">
+    <style>
+        .header__menu ul li {
+            list-style: none !important;
+            display: inline-block !important;
+            /*margin-right: 50px !important;*/
+            margin-bottom: 2px !important;
+            position: relative !important;
+        }
+        li.treeview ul{
+            margin-left: 180px !important;
+            margin-top: -25px !important;
+            Position: fixed !important;
+        }
+        li.treeview:hover ul {
+            display: block !important;
+            color: black !important;
+            transition: 0.5s !important;
+            background-color: black !important;
+        }
+
+        .header__menu ul li .header__menu__dropdown li a {
+
+            text-transform: capitalize !important;
+            color: #ffffff !important;
+            font-weight: 400 !important;
+            padding: 10px 10px 10px 10px !important;
+        }
+    </style>
 </head>
 
 <body>

@@ -187,35 +187,7 @@
                     </div>
                 </div>
                 <div class="col-lg-9 col-md-7">
-                    <div class="product__discount">
-                        <div class="section-title product__discount__title">
-                            <h2>Latest Products</h2>
-                        </div>
-                        <div class="row">
-                            <div class="product__discount__slider owl-carousel">
-                                @foreach($products as $product)
-                                <div class="col-lg-4">
-                                    <div class="product__discount__item">
-                                        <div class="product__discount__item__pic set-bg"
-                                             data-setbg="{{$product->productImages()->first() ? asset($product->productImages()->first()->image) : Null }}">
-{{--                                            <div class="product__discount__percent"></div>--}}
-                                            <ul class="product__item__pic__hover">
-                                                <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                                <li><a href="#"><i class="fa fa-retweet"></i></a></li>
-                                                <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-                                            </ul>
-                                        </div>
-                                        <div class="product__discount__item__text">
-                                            <span>{{$product->name}}</span>
-                                            <h5><a href="#">{{$product->user->name}}</a></h5>
-                                            <div class="product__item__price">₹ {{$product->price}}</div>
-                                        </div>
-                                    </div>
-                                </div>
-                                @endforeach
-                            </div>
-                        </div>
-                    </div>
+                    @include('frontend-layout.product.productlist',['subcategories'=>$categories->first()->subCategories])
                     <div class="filter__item">
                         <div class="row">
                             <div class="col-lg-4 col-md-5">
