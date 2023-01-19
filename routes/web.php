@@ -48,6 +48,7 @@ Route::group(['prefix' => 'front'], function (){
 
 // Subcategory Routes
     Route::post('subcategory','App\Http\Controllers\frontend\HomeController@subcategory')->name('front.subcategory');
+    Route::get('products/{category}/{subcategory}','App\Http\Controllers\frontend\HomeController@products')->name('front.products');
 
 
 });

@@ -27,7 +27,7 @@
         </div>
         <div class="form-group col-sm-4">
             <label>Reddit Url</label>
-            <input type="url" name="reddit_url" value="{{$data->reddit_url}}" placeholder="Enter Reddit Url" class="form-control">
+            <input type="url" name="phone_no" value="{{$data->phone_no}}" placeholder="Enter Reddit Url" class="form-control">
         </div>
         <div class="form-group col-sm-4">
             <label>Instagram Url</label>

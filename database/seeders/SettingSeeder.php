@@ -18,6 +18,7 @@ class SettingSeeder extends Seeder
                 'website_name' => 'Movie',
                 'logo' => '',
                 'website_email'=>'admin@gmail.com',
+                'phone_no'=>'8877665544',
                 'facebook_url'=>'https://www.facebook.com/',
                 'twitter_url'=>'https://twitter.com/',
                 'instagram_url'=>'https://www.instagram.com/',

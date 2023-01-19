@@ -75,7 +75,7 @@ class SettingController extends Controller
         $setting->privacy_policy = $request->privacy_policy;
         $setting->facebook_url = $request->facebook_url;
         $setting->twitter_url = $request->twitter_url;
-        $setting->reddit_url = $request->reddit_url;
+        $setting->phone_no = $request->phone_no;
         $setting->instagram_url = $request->instagram_url;
         $setting->telegram_url = $request->telegram_url;
         $setting->youtube_url = $request->youtube_url;
@@ -113,7 +113,7 @@ class SettingController extends Controller
         $data->privacy_policy = $request->privacy_policy;
         $data->facebook_url = $request->facebook_url;
         $data->twitter_url = $request->twitter_url;
-        $data->reddit_url = $request->reddit_url;
+        $data->phone_no = $request->phone_no;
         $data->instagram_url = $request->instagram_url;
         $data->telegram_url = $request->telegram_url;
         $data->youtube_url = $request->youtube_url;

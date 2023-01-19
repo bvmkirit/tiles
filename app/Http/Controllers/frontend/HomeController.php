@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Arr;
 
 class HomeController extends Controller
 
@@ -23,5 +24,14 @@ class HomeController extends Controller
         }else{
             return response()->json(['status'=>'error','message'=>'Commented',]);
         }
+    }
+    public function products(Request $request, $cat, $subCat){
+        $categoryProduct=Category::where('name',str_replace('-',' ',$subCat))->with('subcategories','subcategories.products')->first();
+
+        $products= Product::wherehas('category',function ($query) use ( $categoryProduct){
+            $query->where('parent_id',$categoryProduct->id);
+        })->get();
+
+        return view('frontend-layout.product.category-product-list',compact('categoryProduct','products'));
     }
 }

@@ -85,7 +85,7 @@ class ProductController extends Controller
             'tiles_per_box' => 'required',
             'stock' => 'required',
             'price' => 'required',
-            'images'=>'required|mimes:jpg,jpeg,png,bmp,tiff',
+//            'images'=>'required|mimes:jpg,jpeg,png,bmp,tiff',
         ],[
             'name.required'=>'Name is required',
             'category_id.required'=>'Category is required',
