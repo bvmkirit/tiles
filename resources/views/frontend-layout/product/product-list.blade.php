@@ -21,7 +21,7 @@
                 <img src="{{asset($product->image)}}" />
                 <ul class="product__item__pic__hover">
                     <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                    <li><a href="#"><i class="fa fa-retweet"></i></a></li>
+                    <li><a href="{{route('front.products',['category'=> str_replace(' ','-',$product->parentCategory->name),'subcategory'=>str_replace(' ','-',$product->name)])}}"><i class="fa fa-eye"></i></a></li>
                     <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
                 </ul>
             </div>
