@@ -23,6 +23,7 @@
     <link rel="stylesheet" href="{{ asset('assets/front/css/slicknav.min.css')}}" type="text/css">
     <link rel="stylesheet" href="{{ asset('assets/front/css/style.css')}}" type="text/css">
     <style>
+
         .header__menu ul li {
             list-style: none !important;
             display: inline-block !important;
@@ -49,6 +50,7 @@
             font-weight: 400 !important;
             padding: 10px 10px 10px 10px !important;
         }
+
     </style>
 </head>
 
@@ -90,7 +92,7 @@
 <script src="{{ asset('assets/front/js/owl.carousel.min.js')}}"></script>
 <script src="{{ asset('assets/front/js/main.js')}}"></script>
 
-
+@stack('scripts')
 </body>
 
 </html>

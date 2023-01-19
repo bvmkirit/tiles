@@ -81,12 +81,18 @@ class CategoryController extends Controller
     {
         $validated = $request->validate([
             'name' => 'required|max:255',
+            'image'=>'nullable|mimes:jpg,jpeg,png,bmp,tiff',
         ],[
             'name.required'=>'Name is required',
         ]);
         $input = $request->all();
+        unset($input['image']);
         $input['level']=Category::where('id',$request->parent_id)->value('level') ? (int)Category::where('id',$request->parent_id)->value('level') + 1  : 1;
         $category = Category::create($input);
+        if($request->image){
+            $category->image =setImage($request->image,'category');
+        }
+        $category->save();
         return redirect()->route('categories.index')->with('message', 'Category Created Successfully');
     }
 
@@ -130,11 +136,16 @@ class CategoryController extends Controller
     {
         $validated = $request->validate([
             'name' => 'required|max:255',
+            'image'=>'nullable|mimes:jpg,jpeg,png,bmp,tiff',
+
         ],[
             'name.required'=>'Name is required',
         ]);
         $input = $request->all();
         $input['level']=Category::where('id',$request->parent_id)->value('level') ? (int)Category::where('id',$request->parent_id)->value('level') + 1  : 1;
+        if($request->image){
+            $input['image'] =setImage($request->image,'category');
+        }
         $category->update($input);
         return redirect()->route('categories.index')->with('message', 'Category Updated Successfully');
 
