@@ -1,4 +1,7 @@
 <header class="header">
+    @php
+        $menus = menus();
+    @endphp
     <div class="header__top">
         <div class="container">
             <div class="row">
@@ -30,22 +33,22 @@
 
                         @guest
                             <div class="header__top__right__auth">
-                            <a href="{{route('front-login')}}">
-                                Login
-                            </a></div>
-                            @else
+                                <a href="{{route('front-login')}}">
+                                    Login
+                                </a></div>
+                        @else
                             <div class="header__top__right__auth">
-                               <a href="{{route('logout')}}"
-                               onclick="event.preventDefault();
+                                <a href="{{route('logout')}}"
+                                   onclick="event.preventDefault();
                                  document.getElementById('logout-form').submit();">
-                                Logout
-                               </a>
+                                    Logout
+                                </a>
 
-                            <form id="logout-form" action="{{route('logout')}}" method="POST"
-                                  style="display: none;">
-                               @csrf
-                            </form>
-                           </div>
+                                <form id="logout-form" action="{{route('logout')}}" method="POST"
+                                      style="display: none;">
+                                    @csrf
+                                </form>
+                            </div>
                         @endif
                     </div>
                 </div>
@@ -64,16 +67,19 @@
                     <ul>
                         <li class="active"><a href="/">Home</a></li>
                         <li><a href="/shop">Shop</a></li>
-                        <li><a href="#">Pages</a>
+                        <li><a href="#">Products</a>
                             <ul class="header__menu__dropdown">
-                                <li class="treeview"><a href="./shop-details.html">Shop Details</a>
-                                    <ul class="treeview-menu">
-                                        <li><a href="#">Sub Category</a></li>
-                                    </ul>
-                                </li>
-                                <li><a href="./shoping-cart.html">Shopping Cart</a></li>
-                                <li><a href="./checkout.html">Check Out</a></li>
-                                <li><a href="./blog-details.html">Blog Details</a></li>
+                                @foreach($menus as $menu)
+                                    <li class="treeview"><a href="./shop-details.html">{{$menu->name}}</a>
+                                        @if(count($menu->subCategories) > 0)
+                                            <ul class="treeview-menu">
+                                                @foreach($menu->subCategories as $subCategory)
+                                                    <li><a href="#">{{$subCategory->name}}</a></li>
+                                                @endforeach
+                                            </ul>
+                                        @endif
+                                    </li>
+                                @endforeach
                             </ul>
                         </li>
                         <li><a href="/blog">Blog</a></li>

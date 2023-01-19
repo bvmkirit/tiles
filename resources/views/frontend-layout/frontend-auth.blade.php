@@ -31,16 +31,21 @@
             margin-bottom: 2px !important;
             position: relative !important;
         }
+        .treeview{
+            width: 100% !important;
+        }
         li.treeview ul{
             margin-left: 180px !important;
             margin-top: -25px !important;
             Position: fixed !important;
+            display: none;
         }
         li.treeview:hover ul {
-            display: block !important;
-            color: black !important;
+            display: flex !important;
+            flex-direction: column;
+            color: #222222 !important;
             transition: 0.5s !important;
-            background-color: black !important;
+            background-color: #222222 !important;
         }
 
         .header__menu ul li .header__menu__dropdown li a {
