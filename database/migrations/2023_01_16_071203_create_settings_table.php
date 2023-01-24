@@ -21,7 +21,7 @@ class CreateSettingsTable extends Migration
             $table->longText('privacy_policy')->nullable();
             $table->string('facebook_url')->nullable();
             $table->string('twitter_url')->nullable();
-            $table->string('reddit_url')->nullable();
+            $table->string('phone_no')->nullable();
             $table->string('instagram_url')->nullable();
             $table->string('telegram_url')->nullable();
             $table->string('youtube_url')->nullable();
