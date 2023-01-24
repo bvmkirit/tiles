@@ -44,7 +44,7 @@ class HomeController extends Controller
         return view('frontend-layout.product.single-products', compact('singleProduct', 'cart'));
     }
 
-    public function addCart(Request $request,)
+    public function addCart(Request $request)
     {
         $product = Product::findorFail($request->id);
         if (Auth::user()) {
@@ -53,10 +53,13 @@ class HomeController extends Controller
                 if ($request->type == 'add' || $request->type ==  'inc') {
                     $cart->qty += 1;
                     $cart->save();
+                }elseif($request->type == 'del'){
+                    $cart->delete();
+                    return response()->json(['status' => 'success', 'message' => 'Product added in cart','cart'=>Null,'total' =>0]);
                 } else {
                     if( $cart->qty ==1){
                         $cart->delete();
-                        return response()->json(['status' => 'success', 'message' => 'Product added in cart','cart'=>Null]);
+                        return response()->json(['status' => 'success', 'message' => 'Product added in cart','cart'=>Null,'total' =>0]);
 
                     }else{
                         $cart->qty -= 1;
@@ -73,12 +76,22 @@ class HomeController extends Controller
             }
 
             if ($cart) {
-                return response()->json(['status' => 'success', 'message' => 'Product added in cart','cart'=>$cart]);
+                $cartTotals = Cart::where([ 'user_id' => Auth::user()->id])->get();
+                $total=0;
+                foreach ($cartTotals as $cartTotal){
+                    $total+=$cartTotal->qty*$cartTotal->price;
+                }
+                return response()->json(['status' => 'success', 'message' => 'Product added in cart','cart'=>$cart,'total' =>'₹'.$total]);
             } else {
-                return response()->json(['status' => 'error', 'message' => 'Something wrong','cart'=>Null]);
+                return response()->json(['status' => 'error', 'message' => 'Something wrong','cart'=>Null,'total' =>0]);
             }
         } else {
-            return response()->json(['status' => 'error', 'message' => 'Something wrong','cart'=>Null]);
+            return response()->json(['status' => 'error', 'message' => 'Something wrong','cart'=>Null,'total' =>0]);
         }
+    }
+
+    public function listCart(){
+        $carts = Cart::where(['user_id' => Auth::user()->id])->get();
+        return view('frontend-layout.cart.cart-list', compact( 'carts'));
     }
 }
