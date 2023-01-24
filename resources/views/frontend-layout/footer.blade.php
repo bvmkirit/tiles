@@ -43,10 +43,10 @@
                         <button type="submit" class="site-btn">Subscribe</button>
                     </form>
                     <div class="footer__widget__social">
-                        <a href="#"><i class="fa fa-facebook"></i></a>
-                        <a href="#"><i class="fa fa-instagram"></i></a>
-                        <a href="#"><i class="fa fa-twitter"></i></a>
-                        <a href="#"><i class="fa fa-pinterest"></i></a>
+                        <a href="{{setWebsite('facebook_url')}}"><i class="fa fa-facebook"></i></a>
+                        <a href="{{setWebsite('twitter_url')}}"><i class="fa fa-twitter"></i></a>
+                        <a href="{{setWebsite('telegram_url')}}"><i class="fa fa-telegram"></i></a>
+                        <a href="{{setWebsite('instagram_url')}}"><i class="fa fa-instagram"></i></a>
                     </div>
                 </div>
             </div>

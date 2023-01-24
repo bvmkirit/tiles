@@ -9,7 +9,7 @@
                         <h2>Organi Shop</h2>
                         <div class="breadcrumb__option">
                             <a href="/">Home</a>
-                            <span>Shop</span>
+                            <span>Product</span>
                         </div>
                     </div>
                 </div>
@@ -36,7 +36,9 @@
 
 
                 <div class="col-lg-9 col-md-7 changeCategoryData">
+                    @if($categories->first())
                     @include('frontend-layout.product.product-list',['products'=>$categories->first()->subCategories()->paginate(10)])
+                    @endif
                 </div>
             </div>
         </div>
