@@ -52,6 +52,8 @@ Route::group(['prefix' => 'front'], function (){
     Route::get('single-products/{product}','App\Http\Controllers\frontend\HomeController@product')->name('front.product');
     Route::post('products/addCart','App\Http\Controllers\frontend\HomeController@addCart')->name('front.addCart');
     Route::get('cart-lists','App\Http\Controllers\frontend\HomeController@listCart')->name('front.listCart');
+    Route::get('checkout','App\Http\Controllers\frontend\HomeController@checkout')->name('front.checkout');
+    Route::post('orderPlaced','App\Http\Controllers\frontend\HomeController@orderPlaced')->name('orderPlaced');
 
 
 });

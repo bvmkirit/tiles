@@ -63,7 +63,7 @@
                         <ul>
                             <li>Total <span class="total_amount">₹ {{$total}}</span></li>
                         </ul>
-                        <a href="#" class="primary-btn">PROCEED TO CHECKOUT</a>
+                        <a href="{{count($carts)>0 ? route('front.checkout'):'#'}}" class="primary-btn">PROCEED TO CHECKOUT</a>
                     </div>
                 </div>
             </div>
