@@ -112,7 +112,7 @@ class RegisterController extends Controller
 
         return $request->wantsJson()
             ? new JsonResponse([], 201)
-            : redirect('front/shop');
+            : redirect('/');
     }
 
     /**

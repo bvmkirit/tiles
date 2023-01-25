@@ -4,12 +4,12 @@
 <div class="humberger__menu__overlay"></div>
 <div class="humberger__menu__wrapper">
     <div class="humberger__menu__logo">
-        <a href="#"><img src="img/logo.png" alt=""></a>
+        <a href="{{route('front.home')}}"><img src="img/logo.png" alt=""></a>
     </div>
     <div class="humberger__menu__cart">
         <ul>
-            <li><a href="#"><i class="fa fa-heart"></i> <span>1</span></a></li>
-            <li><a href="{{Auth::user() ? route('front.listCart') : route('front-login')}}"><i class="fa fa-shopping-bag"></i> <span>{{Auth::user() ? \App\Models\Cart::where('user_id',Auth::user()->id)->count(): 0}}</span></a></li>
+            <li><a href="#"><i class="fa fa-shopping-bag"></i> </a></li>
+            <li><a href="{{Auth::user() ? route('front.listCart') : route('front-login')}}"><i class="fa fa-shopping-cart"></i> <span>{{Auth::user() ? \App\Models\Cart::where('user_id',Auth::user()->id)->count(): 0}}</span></a></li>
         </ul>
         <div class="header__cart__price">item: <span>$150.00</span></div>
     </div>
@@ -164,10 +164,10 @@
             <div class="col-lg-2">
                 <div class="header__cart">
                     <ul>
-                        <li><a href="#"><i class="fa fa-heart"></i> <span>1</span></a></li>
-                        <li><a href="{{Auth::user() ? route('front.listCart') : route('front-login')}}"><i class="fa fa-shopping-bag"></i> <span>{{ Auth::user() ? \App\Models\Cart::where('user_id',Auth::user()->id)->count() : 0}}</span></a></li>
+                        <li><a href="#"><i class="fa fa-shopping-bag"></i> </a></li>
+                        <li><a href="{{Auth::user() ? route('front.listCart') : route('front-login')}}"><i class="fa fa-shopping-cart"></i> <span>{{ Auth::user() ? \App\Models\Cart::where('user_id',Auth::user()->id)->count() : 0}}</span></a></li>
                     </ul>
-                    <div class="header__cart__price">item: <span>$150.00</span></div>
+{{--                    <div class="header__cart__price">item: <span>$150.00</span></div>--}}
                 </div>
             </div>
         </div>
