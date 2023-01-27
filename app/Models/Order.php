@@ -5,12 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class OrderItem extends Model
+class Order extends Model
 {
     use HasFactory;
     protected $guarded = ['id'];
 
-    public function product(){
-        return $this->belongsTo(Product::class,'product_id','id');
+    public function orderItems(){
+        return $this->hasMany(OrderItem::class,'order_id','id');
     }
 }

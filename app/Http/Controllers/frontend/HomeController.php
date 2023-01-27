@@ -6,11 +6,13 @@ use App\Http\Controllers\Controller;
 use App\Models\Cart;
 use App\Models\Category;
 use App\Models\Order;
+use App\Models\OrderItem;
 use App\Models\Product;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use Auth;
+use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 
@@ -131,5 +133,10 @@ class HomeController extends Controller
         } else {
             return response()->json(['status' => 'error', 'message' => 'Something wrong']);
         }
+    }
+    public function orderList(){
+
+        $orders = Order::where(['user_id' => Auth::user()->id])->with('orderItems','orderItems.product','orderItems.product.productImages')->paginate(5);
+        return view('frontend-layout.order.order-list',compact('orders'));
     }
 }
