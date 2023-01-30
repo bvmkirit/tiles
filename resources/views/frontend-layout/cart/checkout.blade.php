@@ -15,33 +15,42 @@
                                 <input type="text" placeholder="Street Address" class="checkout__input__add" name="address">
                                 <input type="text" placeholder="Apartment, suite, unite ect (optinal)" name="address1">
                             </div>
-                            <div class="checkout__input">
-                                <p>Town/City<span>*</span></p>
-                                <input type="text" name="city">
-                            </div>
+
                             <div class="checkout__input">
                                 <p>State<span>*</span></p>
-                                <input type="text" name="state">
-                            </div>
+                                <select id="state-dropdown" name="state_id" class="form-control">
+                                    <option value="">-- Select State --</option>
+                                    @foreach ($states as $data)
+                                        <option value="{{$data->id}}">
+                                            {{$data->name}}
+                                        </option>
+                                    @endforeach
+                                </select>
+                            </div><br/><br/>
+
+                            <div class="checkout__input">
+                                <p>Town/City<span>*</span></p>
+                                <select id="city-dropdown" name="city_id" class="form-control">
+                                    <option value="">-- Select City --</option>
+                                </select>
+                            </div><br/><br/>
+
                             <div class="checkout__input">
                                 <p>Postcode / ZIP<span>*</span></p>
-                                <input type="text" name="pincode">
+                                <input type="text" name="zipcode">
                             </div>
                             <div class="row">
                                 <div class="col-lg-12">
                                     <div class="checkout__input">
                                         <p>Phone<span>*</span></p>
-                                        <input type="text" name="phone_no">
+                                        <input type="text" name="phone">
                                     </div>
                                 </div>
-
                             </div>
-
-
 
                             <div class="checkout__input">
                                 <p>Order notes<span>*</span></p>
-                                <input type="text" name="order_note"
+                                <input type="text" name="ordernote"
                                        placeholder="Notes about your order, e.g. special notes for delivery.">
                             </div>
                         </div>
@@ -190,6 +199,37 @@
                     e.preventDefault();
                 }
             })
+        });
+    </script>
+
+    <script>
+        $(document).ready(function () {
+            /*------------------------------------------
+            --------------------------------------------
+            State Dropdown Change Event
+            --------------------------------------------
+            --------------------------------------------*/
+            $('#state-dropdown').on('change', function () {
+                var idState = this.value;
+                $("#city-dropdown").html('');
+                $.ajax({
+                    url: "{{url('front/api/fetch-cities')}}",
+                    type: "POST",
+                    data: {
+                        state_id: idState,
+                        _token: '{{csrf_token()}}'
+                    },
+                    dataType: 'json',
+                    success: function (res) {
+                        $('#city-dropdown').html('<option value="">-- Select City --</option>');
+                        $.each(res.cities, function (key, value) {
+                            $("#city-dropdown").append('<option value="' + value.id + '">' + value.name + '</option>');
+                        });
+                        $("#city-dropdown").niceSelect('update');
+                    }
+                });
+            });
+
         });
     </script>
 @endpush
