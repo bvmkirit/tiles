@@ -6,6 +6,7 @@ use App\Http\Controllers\CityController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\frontend\Auth\LoginController;
 use App\Http\Controllers\frontend\Auth\RegisterController;
 use App\Http\Controllers\frontend\Auth\ForgotPasswordController;
@@ -57,6 +58,7 @@ Route::group(['prefix' => 'front'], function (){
     Route::get('order-lists','App\Http\Controllers\frontend\HomeController@orderList')->name('front.orderList');
 
 
+    Route::post('api/fetch-cities', 'App\Http\Controllers\frontend\HomeController@fetchCity')->name('front.fetchCity');
 });
 
 
@@ -78,7 +80,8 @@ Route::group(['prefix' => 'admin'], function () {
         Route::resource('products', ProductController::class);
         Route::post('products/img-delete', [ProductController::class, 'deleteImage'])->name('products.image.delete');
         Route::group(['prefix' => 'orders'], function () {
-            Route::get('/', [OrderController::class, 'index'])->name('orders.index');
+            Route::get('index', [OrderController::class, 'index'])->name('orders.index');
+            Route::get('show/{id}', [OrderController::class, 'show'])->name('orders.show');
         });
     });
 });

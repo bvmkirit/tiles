@@ -5,9 +5,11 @@ namespace App\Http\Controllers\frontend;
 use App\Http\Controllers\Controller;
 use App\Models\Cart;
 use App\Models\Category;
+use App\Models\City;
 use App\Models\Order;
 use App\Models\OrderItem;
 use App\Models\Product;
+use App\Models\State;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
@@ -100,8 +102,9 @@ class HomeController extends Controller
     }
 
     public function checkout(){
+        $states = State::where(['country_id'=>1])->get();
         $carts = Cart::where(['user_id' => Auth::user()->id])->get();
-        return view('frontend-layout.cart.checkout', compact('carts'));
+        return view('frontend-layout.cart.checkout', compact('carts','states'));
     }
 
     public function orderPlaced(Request $request){
@@ -111,6 +114,11 @@ class HomeController extends Controller
             $order->order_no = 'TL/' . Carbon::now()->format('dmy') . '/' . $id;
             $order->user_id = Auth::user()->id;
             $order->address = $request->address;
+            $order->state_id = $request->state_id;
+            $order->city_id = $request->city_id;
+            $order->zipcode = $request->zipcode;
+            $order->phone = $request->phone;
+            $order->ordernote = $request->ordernote;
             $order->status = 'Order Placed';
             $order->total = 0;
             $order->order_date = Carbon::now()->format('Y-m-d');
@@ -139,4 +147,11 @@ class HomeController extends Controller
         $orders = Order::where(['user_id' => Auth::user()->id])->with('orderItems','orderItems.product','orderItems.product.productImages')->paginate(5);
         return view('frontend-layout.order.order-list',compact('orders'));
     }
+
+    public function fetchCity(Request $request)
+    {
+        $data['cities'] = City::where("state_id",$request->state_id)->get(["name", "id"]);
+        return response()->json($data);
+    }
+
 }
