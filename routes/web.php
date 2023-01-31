@@ -82,6 +82,7 @@ Route::group(['prefix' => 'admin'], function () {
         Route::group(['prefix' => 'orders'], function () {
             Route::get('index', [OrderController::class, 'index'])->name('orders.index');
             Route::get('show/{id}', [OrderController::class, 'show'])->name('orders.show');
+            Route::post('orderstatus/{id}', [OrderController::class, 'changestatus']);
         });
     });
 });
