@@ -2,7 +2,7 @@
 @section('title',$categoryProduct->name)
 @section('content')
     <section class="featured spad">
-        <div class="container">
+        <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-12">
                     <div class="section-title">
@@ -22,9 +22,9 @@
                     </div>
                 </div>
             </div>
-            <div class="row featured__filter" id="MixItUp0D6016">
+            <div class="row featured__filter mt-5" id="MixItUp0D6016">
                 @foreach($products as $product)
-                <div class="col-lg-3 col-md-4 col-sm-6 mix {{str_replace(' ','-',$product->category->name)}}">
+                <div class="col-lg-2 col-md-4 col-sm-6 mix {{str_replace(' ','-',$product->category->name)}}">
                     <div class="featured__item">
                         <div class="featured__item__pic set-bg" data-setbg="{{asset($product->productImages->first()->image)}}" style="background-image: url({{asset($product->productImages->first()->image)}});">
                             <ul class="featured__item__pic__hover">
