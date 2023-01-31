@@ -4,7 +4,7 @@
         <div class="text-dark order-2 order-md-1">
             <span class="text-muted font-weight-bold mr-2">2020©</span>
             <a href="http://keenthemes.com/metronic" target="_blank"
-               class="text-dark-75 text-hover-primary">{{ config('app.name', 'Laravel') }}</a>
+{{--               class="text-dark-75 text-hover-primary">{{ config('app.name', 'Laravel') }}</a>--}}
         </div>
     </div>
 </div>
@@ -21,7 +21,7 @@
     <div class="offcanvas-content pr-5 mr-n5">
         <div class="d-flex align-items-center mt-5">
             <div class="symbol symbol-100 mr-5">
-                <div class="symbol-label" style="background-image:url('assets/media/users/300_21.jpg')"></div>
+                <div class="symbol-label" ></div>
                 <i class="symbol-badge bg-success"></i>
             </div>
             <div class="d-flex flex-column">
@@ -376,12 +376,15 @@
     };</script>
 
 <script src="{{asset('assets/plugins/global/plugins.bundle.js') }}"></script>
-<script src="{{asset('assets/plugins/custom/prismjs/prismjs.bundle.js') }}"></script>
+{{--<script src="{{asset('assets/plugins/custom/prismjs/prismjs.bundle.js') }}"></script>--}}
 <script src="{{asset('assets/js/scripts.bundle.js') }}"></script>
-<script src="{{asset('assets/plugins/custom/fullcalendar/fullcalendar.bundle.js') }}"></script>
-<script src="{{asset('assets/js/pages/widgets.js') }}"></script>
-<script src="{{asset('assets/plugins/custom/datatables/datatables.bundle.js') }}"></script>
+{{--<script src="{{asset('assets/plugins/custom/fullcalendar/fullcalendar.bundle.js') }}"></script>--}}
+{{--<script src="{{asset('assets/js/pages/widgets.js') }}"></script>--}}
+{{--<script src="{{asset('assets/plugins/custom/datatables/datatables.bundle.js') }}"></script>--}}
+<script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
+
 @stack('scripts')
+<script src="{{ asset('assets/plugins/custom/datatables/datatables.bundle.js')}}" type="text/javascript"></script>
 <script src="{{asset('assets/js/pages/crud/datatables/basic/paginations.js') }}"></script>
 </body>
 </html>

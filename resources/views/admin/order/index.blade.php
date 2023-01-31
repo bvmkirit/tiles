@@ -44,6 +44,7 @@
                             <th>Status</th>
                             <th>Total</th>
                             <th>Orderdate</th>
+                            <th>Status Change</th>
                             <th>Action</th>
                         </tr>
                         </thead>
@@ -63,6 +64,11 @@
 
 @endsection
 @push('scripts')
+
+    <script type="text/javascript" src="{{ asset('assets/plugins/custom/jquery-ui/jquery-ui.bundle.css') }}"></script>
+
+    <script type="text/javascript" src="{{ asset('assets/plugins/custom/jquery-ui/jquery-ui.bundle.js') }}"></script>
+
     <script src="{{ asset('assets/plugins/custom/datatables/datatables.bundle.js')}}" type="text/javascript"></script>
     <script>
 
@@ -187,6 +193,14 @@
 
                         searchable: true,
 
+                        "data": "statusChange"
+
+                    },
+                    {
+                        orderable: true,
+
+                        searchable: true,
+
                         "data": "action"
 
                     },
@@ -196,4 +210,42 @@
             });
         });
     </script>
+    <script>
+
+            $(document).on('change', '.changeStatus', function () {
+                // console.log($(this).val())
+                // console.log($(this).attr('order_id'));
+
+                var status = $(this).val();
+                var order_id = $(this).attr('order_id');
+                var url = '{{url('admin/orders/orderstatus/')}}/'+ order_id ;
+
+                $.ajax({
+                    url: url,
+                    type: "POST",
+                    data: {
+                        order_id: order_id,
+                        status: status,
+                        _token: '{{csrf_token()}}'
+                    },
+                    dataType: 'json',
+                    success: function (res) {
+                        console.log(res)
+                        if (res.status == 'success') {
+
+                            toastr["success"](res.message, "Success");
+                            location.reload();
+
+                        } else {
+                            toastr["error"](res.message, "Error");
+
+                        }
+                    }
+                });
+
+            });
+
+
+    </script>
+
 @endpush
