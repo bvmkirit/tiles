@@ -29,12 +29,8 @@
                                 @endforeach
                             </ul>
                         </div>
-
-
                     </div>
                 </div>
-
-
                 <div class="col-lg-9 col-md-7 changeCategoryData">
                     @if($categories->first())
                     @include('frontend-layout.product.product-list',['products'=>$categories->first()->subCategories()->paginate(10)])
@@ -50,47 +46,21 @@
             $('.categoryChange').on("click", function (e) {
                 var id = $(this).data('id');
                 $.ajax({
-
                     type: "POST",
-
                     url: "{{route('front.subcategory')}}",
-
                     data: {
                         '_token': "{{csrf_token()}}",
                         'id': id,
                     },
-
                     cache: false,
-
                     success: function (data) {
-
                         if (data.status === 'success') {
-                            // $('.cat-item').css('color', '#000000')
-                            // $('#active-' + id).css('color', '#e40914')
-                            // $('.episodeName').html(data.episode.title)
                             $('.changeCategoryData').html("")
                             $('.changeCategoryData').html(data.renderData)
-
-
-                        } else if (data.status === 'error') {
+                        } else {
                             location.reload();
-
                             toastr["error"]("Something went wrong", "Error");
-
-                        } else if (data.status === 'type_code') {
-
-                            toastr["error"]("Duplicate code!", "Error");
-
-                            $('.change_button').prop('disabled', false);
-
-                            $('.change_button').find('.change_spin').addClass('d-none');
-                        } else if (data.status === 'email_exists') {
-                            toastr["error"]("Duplicate Email!", "Error");
-                            // location.reload();
-                            $('.change_button').prop('disabled', false);
-                            $('.change_button').find('.change_spin').addClass('d-none');
                         }
-
                     },
                     error: function (data) {
                         console.log(data.status)
@@ -101,14 +71,10 @@
                                 $('#' + key).addClass('is-invalid');
                                 $('#' + key).parent().append('<div id="' + key + '-error" class="error invalid-feedback ">' + value + '</div>');
                             });
-
                         }
-
                     }
-
                 });
             });
         });
     </script>
-
 @endpush

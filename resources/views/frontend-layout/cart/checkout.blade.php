@@ -1,5 +1,17 @@
 @extends('frontend-layout.frontend-auth')
 @section('title','Check Out')
+@push('styles')
+    <style>
+        .nice-select {
+            width: 100% !important;
+        }
+        .nice-select.open .list{
+            width: 100% !important;
+
+        }
+    </style>
+
+@endpush
 @section('content')
     <section class="checkout spad">
         <div class="container">
@@ -153,7 +165,7 @@
 
                         if (data.status === 'success') {
 
-                            location.reload();
+                            window.location = "{{route('front.orderList')}}";
 
                             toastr["success"]("Order Placed Successfully", "Success");
 

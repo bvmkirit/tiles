@@ -79,7 +79,6 @@
 
 
 <header class="header">
-
     <div class="header__top">
         <div class="container">
             <div class="row">
@@ -167,7 +166,6 @@
                         <li><a href="{{Auth::user() ? route('front.orderList') : route('front-login')}}"><i class="fa fa-shopping-bag"></i> </a></li>
                         <li><a href="{{Auth::user() ? route('front.listCart') : route('front-login')}}"><i class="fa fa-shopping-cart"></i> <span>{{ Auth::user() ? \App\Models\Cart::where('user_id',Auth::user()->id)->count() : 0}}</span></a></li>
                     </ul>
-{{--                    <div class="header__cart__price">item: <span>$150.00</span></div>--}}
                 </div>
             </div>
         </div>
