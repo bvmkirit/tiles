@@ -4,7 +4,7 @@
 
         <div class="col-lg-12 col-md-12">
             <div class="filter__found">
-                <h6><span>{{count($products)}}</span> Products found</h6>
+                <h6><span>{{count($products)}}</span> Categories found</h6>
             </div>
         </div>
         <div class="col-lg-4 col-md-3">
@@ -14,7 +14,7 @@
 </div>
 <div class="row">
     @foreach($products as $product)
-    <div class="col-lg-4 col-md-6 col-sm-6">
+    <div class="col-lg-3 col-md-6 col-sm-6">
         <div class="product__item">
             <div class="product__item__pic set-bg">
                 <img src="{{asset($product->image)}}" />

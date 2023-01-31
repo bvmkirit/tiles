@@ -1,28 +1,13 @@
 @extends('frontend-layout.frontend-auth')
 
 @section('content')
-    <section class="breadcrumb-section set-bg" data-setbg="{{asset('assets/front/img/breadcrumb.jpg')}}">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12 text-center">
-                    <div class="breadcrumb__text">
-                        <h2>Organi Shop</h2>
-                        <div class="breadcrumb__option">
-                            <a href="/">Home</a>
-                            <span>Product</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
     <section class="product spad">
-        <div class="container">
+        <div class="container-fluid">
             <div class="row">
-                <div class="col-lg-3 col-md-5">
+                <div class="col-lg-2 col-md-2">
                     <div class="sidebar">
                         <div class="sidebar__item">
-                            <h4>Product</h4>
+                            <h4>Categories</h4>
                             <ul>
                                 @foreach($categories as $category )
                                     <li><a href="javascript:;" data-id="{{$category->id}}" class="categoryChange">{{$category->name}}</a></li>
@@ -31,7 +16,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-9 col-md-7 changeCategoryData">
+                <div class="col-lg-10 col-md-10 changeCategoryData">
                     @if($categories->first())
                     @include('frontend-layout.product.product-list',['products'=>$categories->first()->subCategories()->paginate(10)])
                     @endif
