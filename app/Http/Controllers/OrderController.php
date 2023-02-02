@@ -71,15 +71,26 @@ class OrderController extends Controller
 
     }
     public function show(Request $request, $id){
+        $order_id=$id;
         $orders = Order::where("id",$id)->with('orderItems','state','city','user','orderItems.product','orderItems.product.productImages')->get();
 //        dd($order);
-        return view ('admin.order.show_order_item',compact('orders'));
+        return view ('admin.order.show_order_item',compact('orders', 'order_id'));
 
     }
 
     public function changestatus(Request $request, $id)
     {
        $order= Order::where("id",$id)->update(['status' => $request->status]);
+        if ($order){
+            return response()->json(['status'=>'success']);
+        }else{
+            return response()->json(['status'=>'error']);
+        }
+    }
+
+    public function orderitemstatus(Request $request)
+    {
+        $order= OrderItem::where("id",$request->orderitem_id)->update(['status' => $request->status]);
         if ($order){
             return response()->json(['status'=>'success']);
         }else{

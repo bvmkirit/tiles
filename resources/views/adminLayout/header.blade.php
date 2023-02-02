@@ -18,6 +18,7 @@
     <link href="{{ asset('assets/css/themes/layout/brand/dark.css') }}" rel="stylesheet" type="text/css"/>
     <link href="{{ asset('assets/css/themes/layout/aside/dark.css') }}" rel="stylesheet" type="text/css"/>
     <link rel="shortcut icon" href="{{ asset('assets/media/logos/favicon.ico') }}"/>
+    @stack('styles')
 </head>
 <body id="kt_body"
       class="header-fixed header-mobile-fixed subheader-enabled subheader-fixed aside-enabled aside-fixed aside-minimize-hoverable page-loading">
