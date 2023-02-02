@@ -79,10 +79,13 @@ Route::group(['prefix' => 'admin'], function () {
         Route::resource('categories', CategoryController::class);
         Route::resource('products', ProductController::class);
         Route::post('products/img-delete', [ProductController::class, 'deleteImage'])->name('products.image.delete');
+
         Route::group(['prefix' => 'orders'], function () {
             Route::get('index', [OrderController::class, 'index'])->name('orders.index');
             Route::get('show/{id}', [OrderController::class, 'show'])->name('orders.show');
             Route::post('orderstatus/{id}', [OrderController::class, 'changestatus']);
+            Route::post('orderitemstatus', [OrderController::class, 'orderitemstatus'])->name('order.orderitemstatus');
+
         });
     });
 });
